@@ -1,7 +1,6 @@
 import spaceship from "../../assets/spaceship.png";
 
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
 import Missile from "../Missile/Missile";
 
 function SpaceShip() {
@@ -10,7 +9,6 @@ function SpaceShip() {
   const [missileList, setMissileList] = useState([]);
 
   useEffect(() => {
-    let img = new Image();
     function handleKeyDown(e) {
       //Left Arrow Key
       if (e.keyCode === 32) {
@@ -54,7 +52,7 @@ function SpaceShip() {
     return function cleanup() {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [marginLeft]);
+  }, [marginLeft, missileList]);
 
   // console.log(marginLeft);
   // console.log(window.innerWidth);
