@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import deleteHighScore from "../api/deleteHighScore";
 import getHighScores from "../api/getHighScores";
 
+import axios from "axios";
 /**
  * React hook that fetchs the data from server
  * @returns
@@ -45,9 +46,32 @@ export default function useAllHighScores() {
     }
   };
 
+  const updateScore = async (id) => {
+    const newScore = prompt("Enter New Score: ");
+    const newName = prompt("Enter New Name: ");
+
+    try {
+      axios.put("http://localhost:4200/update-score", {
+      score: newScore, username: newName, _id: id
+    })
+    .then(() => {
+      // new element created
+      setAllScores(allScores.map((value) => {
+        // if the element has the id wanting to update, get a  new obj
+        return ( value._id === id ? {_id: id, score: newScore, username: newName} :  value)
+      }))
+      })
+    } catch (e) {
+      console.log(e);
+
+    }
+  }
+
   return {
     allScores,
     deleteScore,
     isDeleting,
+    updateScore
+
   };
 }

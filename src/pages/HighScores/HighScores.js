@@ -2,6 +2,8 @@ import useAllHighScores from "../../hooks/useAllHighScores";
 import styled from "styled-components";
 import bgImg from "../../assets/background.png";
 
+
+
 const PageWrapper = styled.div`
   width: 100vw;
   height: 100vh;
@@ -45,6 +47,20 @@ const ScoreWrapper = styled.div`
   }
 `;
 
+const UpdateButton = styled.button`
+color: #fff;
+background-color: blue;
+border-radius: 4px;
+padding: 0.5rem 0.5rem;
+outline: none;
+border-color: blue;
+border-style: solid;
+
+&:hover {
+  cursor: pointer;
+}
+`
+
 const Header = styled.h1`
   color: #fff;
   font-size 24px;
@@ -68,7 +84,7 @@ const DeleteButton = styled.button`
 `;
 export default function HighScores() {
   // object destructuring
-  const { allScores, deleteScore, isDeleting } = useAllHighScores();
+  const { allScores, deleteScore, isDeleting, updateScore } = useAllHighScores();
 
   return (
     <PageWrapper>
@@ -85,6 +101,10 @@ export default function HighScores() {
           >
             {isDeleting === true ? "Is Deleting" : "Delete"}
           </DeleteButton>
+
+          <UpdateButton onClick={() => {
+            updateScore(score._id)
+          }}>Update</UpdateButton>
         </ScoreWrapper>
       ))}
     </PageWrapper>
