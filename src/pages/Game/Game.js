@@ -1,5 +1,4 @@
 import "../../App.css";
-import React, { useState } from "react";
 import Timer from "../../components/Timer/Timer";
 import SpaceShip from "../../components/SpaceShip/SpaceShip";
 import useAllHighScores from "../../hooks/useAllHighScores";
